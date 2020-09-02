@@ -27,31 +27,16 @@ export const TodoList = ({items, onNewItem, onItemUpdate, onItemDelete}) => {
         onItemDelete()
     }
 
-    const renderIcon = (complete, onClick) => {
-        if (complete) {
-            return (<i class="check circle outline icon" onClick={onClick}></i>)
-        }
-        else {
-            return (<i class="circle outline icon" onClick={onClick}/>)
-        }
-    }
-
     return (
         <List>
             {items.map(item => {
-
-                const itemClass = classnames('todo-list-item', {
-                    ['todo-list-item-checked']: item.complete
-                })
-
                 return (                    
-                    <List.Item key={item.id} className={itemClass}> 
-                        {renderIcon(item.complete, () => completeItem(item.id))}
-                        
-                        {item.text}
-                        
-                        <i class="close icon" onClick={() => deleteItem(item.id)}></i>
-                    </List.Item>
+                    <TodoItem 
+                        id={item.id} 
+                        text={item.text} 
+                        complete={item.complete} 
+                        onUpdate={() => completeItem(item.id)} 
+                        onDelete={() => deleteItem(item.id)} />
                 )
             })}
         </List>

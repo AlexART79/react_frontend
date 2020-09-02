@@ -3,7 +3,7 @@ import { List, Header } from 'semantic-ui-react';
 import classnames from 'classnames'
 
 
-export const TodoItem = (id, complete, text, onUpdate, onDelete) => {    
+export const TodoItem = ({id, complete, text, onUpdate, onDelete}) => {    
     const itemClass = classnames('todo-list-item', {
         ['todo-list-item-checked']: complete
     })
@@ -19,11 +19,11 @@ export const TodoItem = (id, complete, text, onUpdate, onDelete) => {
 
     return (                    
         <List.Item key={id} className={itemClass}> 
-            {renderIcon(complete, () => onUpdate(id))}
+            {renderIcon(complete, onUpdate)}
             
             {text}
             
-            <i class="close icon" onClick={() => onDelete(id)}></i>
+            <i class="close icon" onClick={onDelete}></i>
         </List.Item>
     )
 }
