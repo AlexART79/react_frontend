@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.icon {
+  display: inline !important;
+}
+
+.close.icon {
+  margin-left: 20px !important;
+}
+
+.todo-list-item-checked {
+  text-decoration: line-through;
+  color: #888;
+}
