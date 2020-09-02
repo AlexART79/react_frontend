@@ -1,6 +1,8 @@
 import React, {useEffect, useState, setState} from 'react';
 import './App.css';
 import { TodoList } from './components/TodoList';
+import { Container } from 'semantic-ui-react';
+import { TodoItemForm } from './components/TodoItemForm';
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -17,6 +19,8 @@ function App() {
   }, [])
   
   return (
+    <Container>
+
       <TodoList 
         items={todos} 
         onItemUpdate={ () => {
@@ -31,6 +35,8 @@ function App() {
 
           }}
        />
+      <TodoItemForm onNewItem={newItem => setTodos(existingItems => [...existingItems, newItem])} />
+    </Container>
   );
 }
 
