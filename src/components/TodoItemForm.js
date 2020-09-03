@@ -2,6 +2,8 @@ import React, { useState} from 'react';
 import { Form, Input, Button } from 'semantic-ui-react';
 
 export const TodoItemForm = ({onNewItem}) => {    
+    const apiHost = process.env.API_HOST ? process.env.API_HOST : '127.0.0.1'
+    const apiEndpoint = 'http://'+apiHost+':5000/api/todo'
 
     const [itemText, setText] = useState('')
 
@@ -21,7 +23,7 @@ export const TodoItemForm = ({onNewItem}) => {
                             
                             console.log(JSON.stringify(item))
                             
-                            const resp = await fetch('/api/todo', {
+                            const resp = await fetch(apiEndpoint, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'

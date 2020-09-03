@@ -6,10 +6,13 @@ import { TodoItemForm } from './components/TodoItemForm';
 
 function App() {
   
+  const apiHost = process.env.API_HOST ? process.env.API_HOST : '127.0.0.1'
+  const apiEndpoint = 'http://'+apiHost+':5000/api/todo'
+
   const [todos, setTodos] = useState([])
 
   const getAll = () => {
-    fetch('/api/todo').then(response => response.json().then(data => {
+    fetch(apiEndpoint).then(response => response.json().then(data => {
       setTodos(data.todos)
     }))
   }
