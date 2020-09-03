@@ -1,10 +1,11 @@
-import React, {useEffect, useState, setState} from 'react';
+import React, {useEffect, useState } from 'react';
 import './App.css';
 import { TodoList } from './components/TodoList';
-import { Container } from 'semantic-ui-react';
+import { Container, Header } from 'semantic-ui-react';
 import { TodoItemForm } from './components/TodoItemForm';
 
 function App() {
+  
   const [todos, setTodos] = useState([])
 
   const getAll = () => {
@@ -14,28 +15,26 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('Render')
     getAll()
   }, [])
   
   return (
     <Container>
-
+      <Header className="list-header">My Todo List</Header>
       <TodoList 
         items={todos} 
         onItemUpdate={ () => {
-            console.log('Redraw list')
             getAll()
           }}
         onItemDelete={item => {
-            console.log('Redraw list')
             getAll()
-          }}
-        onNewItem={item => {
-
-          }}
+          }}        
        />
-      <TodoItemForm onNewItem={newItem => setTodos(existingItems => [...existingItems, newItem])} />
+       <hr />
+      <TodoItemForm onNewItem={() => {
+          getAll()
+        }} 
+      />
     </Container>
   );
 }

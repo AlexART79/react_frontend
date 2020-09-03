@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import classnames from 'classnames'
+import React from 'react';
 import { List } from 'semantic-ui-react';
 import {TodoItem} from './TodoItem'
 
-export const TodoList = ({items, onNewItem, onItemUpdate, onItemDelete}) => {
-
+export const TodoList = ({items, onItemUpdate, onItemDelete}) => {
+    
     const completeItem = async id => {
         console.log('Complete: '+id)
 
@@ -24,7 +23,8 @@ export const TodoList = ({items, onNewItem, onItemUpdate, onItemDelete}) => {
             method: 'DELETE'
         })
 
-        onItemDelete()
+        if (resp.ok) 
+            onItemDelete()
     }
 
     return (
@@ -32,7 +32,8 @@ export const TodoList = ({items, onNewItem, onItemUpdate, onItemDelete}) => {
             {items.map(item => {
                 return (                    
                     <TodoItem 
-                        id={item.id} 
+                        key={item.id}
+                        id={item.id}
                         text={item.text} 
                         complete={item.complete} 
                         onUpdate={() => completeItem(item.id)} 

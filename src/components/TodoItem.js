@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import { List, Header } from 'semantic-ui-react';
+import React from 'react';
+import { List } from 'semantic-ui-react';
 import classnames from 'classnames'
 
 
@@ -10,20 +10,18 @@ export const TodoItem = ({id, complete, text, onUpdate, onDelete}) => {
 
     const renderIcon = (complete, onClick) => {
         if (complete) {
-            return (<i class="check circle outline icon" onClick={onClick}></i>)
+            return (<i className="check circle outline icon" onClick={onClick}></i>)
         }
         else {
-            return (<i class="circle outline icon" onClick={onClick}/>)
+            return (<i className="circle outline icon" onClick={onClick}/>)
         }
     }
 
     return (                    
         <List.Item key={id} className={itemClass}> 
-            {renderIcon(complete, onUpdate)}
-            
-            {text}
-            
-            <i class="close icon" onClick={onDelete}></i>
+            {renderIcon(complete, onUpdate)}            
+            {text}            
+            <i className="close icon" onClick={onDelete}></i>
         </List.Item>
     )
 }
